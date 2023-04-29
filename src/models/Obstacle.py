@@ -1,11 +1,11 @@
 from enums.LineType import LineType
-from Point import Point
+from models.Point import Point
 
 
 class Obstacle:
 
     def __init__(self, first_point: Point, second_point: Point, line_type: LineType) -> None:
-       
+
         self._line_type = line_type
 
         first_x, first_y = first_point.coordinates
@@ -30,8 +30,7 @@ class Obstacle:
                 else:
                     self._start_point = second_point
                     self._end_point = first_point
-                
-                
+
     def contains_point(self, point: Point):
         point_x, point_y = point.coordinates
 
@@ -47,11 +46,10 @@ class Obstacle:
                     return True
         return False
 
-
     @property
     def line_type(self):
         return self._line_type
-    
+
     @property
     def points(self):
         return self._start_point, self._end_point

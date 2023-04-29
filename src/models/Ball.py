@@ -1,9 +1,9 @@
 from threading import Thread
 from time import sleep
-from ObstacleManager import ObstacleManager
+from managers.ObstacleManager import ObstacleManager
 from enums.Direction import Direction
-from Point import Point
-from ScoreManager import ScoreManager
+from models.Point import Point
+from managers.ScoreManager import ScoreManager
 
 
 class Ball:
@@ -62,5 +62,3 @@ class Ball:
                 case Direction.DOWN_LEFT:
                     self._position.set_x(x - 1)
                     self._position.set_y(y - 1)
-
-            # print(self._thread, self._position.coordinates, self._direction)

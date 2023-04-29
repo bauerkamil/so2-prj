@@ -1,8 +1,8 @@
-from Ball import Ball
-from BallManager import BallManager
-from ObstacleManager import ObstacleManager
-from Point import Point
-from ScoreManager import ScoreManager
+from models.Ball import Ball
+from managers.BallManager import BallManager
+from managers.ObstacleManager import ObstacleManager
+from models.Point import Point
+from managers.ScoreManager import ScoreManager
 from Game import Game
 
 

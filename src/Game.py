@@ -1,10 +1,10 @@
 import pygame
 
 from pygame.locals import *
-from BallManager import BallManager
+from managers.BallManager import BallManager
 
-from ObstacleManager import ObstacleManager
-from ScoreManager import ScoreManager
+from managers.ObstacleManager import ObstacleManager
+from managers.ScoreManager import ScoreManager
 from Settings import Settings
 
 

@@ -2,10 +2,10 @@
 import random
 from threading import Lock, Thread
 from time import sleep
-from Ball import Ball
-from ObstacleManager import ObstacleManager
-from Point import Point
-from ScoreManager import ScoreManager
+from models.Ball import Ball
+from managers.ObstacleManager import ObstacleManager
+from models.Point import Point
+from managers.ScoreManager import ScoreManager
 from Settings import Settings
 from enums.Direction import Direction
 

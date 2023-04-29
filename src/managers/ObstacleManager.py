@@ -1,8 +1,8 @@
 from Settings import Settings
 from enums.Direction import Direction
 from enums.LineType import LineType
-from Obstacle import Obstacle
-from Point import Point
+from models.Obstacle import Obstacle
+from models.Point import Point
 from enums.Players import Player
 
 
