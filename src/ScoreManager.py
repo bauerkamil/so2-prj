@@ -1,11 +1,9 @@
 import threading
-import logging
 
 from enums.Players import Player
 
-# threading.TIMEOUT_MAX = 1
 
-class Score:
+class ScoreManager:
 
     def __init__(self):
         self._player1_score = 0
@@ -19,8 +17,8 @@ class Score:
         with self._player1_lock:
             with self._player2_lock:
                 return self._player1_score, self._player2_score
-    
-    def add_point(self, player: Player): 
+
+    def add_point(self, player: Player):
         if player == Player.ONE:
             with self._player1_lock:
                 self._player1_score += 1
@@ -28,8 +26,6 @@ class Score:
             with self._player2_lock:
                 self._player2_score += 1
 
-        print(self.score)
-    
 
 # with some_lock:
 #     # do something...
@@ -41,4 +37,3 @@ class Score:
 #     # do something...
 # finally:
 #     some_lock.release()
-
