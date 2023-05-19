@@ -15,7 +15,7 @@ class BallManager:
     def __init__(self, obstacle_manager: ObstacleManager, score_manager: ScoreManager):
         self._obstacle_manager = obstacle_manager
         self._score_manager = score_manager
-        self._time_delay = 2
+        self._time_delay = 1
         self._is_running = False
         self._thread = Thread(target=self._generate_balls)
         self._lock = Lock()
@@ -49,8 +49,11 @@ class BallManager:
 
     def _generate_balls(self):
         while (self._is_running):
-
             sleep(self._time_delay)
+
+            if (not self._is_running):
+                break
+
             with self._lock:
                 point = Point(
                     random.randint(0.2 * Settings.MAP_WIDTH,
@@ -72,5 +75,6 @@ class BallManager:
             ball.run()
 
     def _stop_balls(self):
-        for ball in self._balls:
-            ball.stop()
+        with self._lock:
+            for ball in self._balls:
+                ball.stop()

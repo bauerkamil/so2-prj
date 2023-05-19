@@ -3,18 +3,13 @@ from enums.Direction import Direction
 from enums.LineType import LineType
 from models.Obstacle import Obstacle
 from models.Point import Point
-from enums.Players import Player
+from enums.PlayerNumbers import PlayerNumber
 
 
 class ObstacleManager:
 
-    def __init__(self):
-        self._obstacles = [
-            Obstacle(Point(0, 0), Point(
-                Settings.MAP_WIDTH, 0), LineType.HORIZONTAL),
-            Obstacle(Point(Settings.MAP_WIDTH, Settings.MAP_HEIGHT), Point(
-                0, Settings.MAP_HEIGHT), LineType.HORIZONTAL),
-        ]
+    def __init__(self, obstacles):
+        self._obstacles = obstacles
 
     @property
     def obstacles_coordinates(self):
@@ -22,10 +17,10 @@ class ObstacleManager:
 
     def player_got_point(self, x):
         if x == 0:
-            return Player.ONE
+            return PlayerNumber.ONE
 
         if x == Settings.MAP_WIDTH:
-            return Player.TWO
+            return PlayerNumber.TWO
 
         return None
 

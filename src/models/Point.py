@@ -1,5 +1,4 @@
-
-
+from threading import Lock
 
 
 class Point:
@@ -7,21 +6,30 @@ class Point:
     def __init__(self, x, y) -> None:
         self._x = x
         self._y = y
-    
+
+        self._x_lock = Lock()
+        self._y_lock = Lock()
+
     @property
     def coordinates(self):
-        return self._x, self._y
-    
+        with self._x_lock:
+            with self._y_lock:
+                return self._x, self._y
+
     @property
     def x(self):
-        return self._x
-    
+        with self._x_lock:
+            return self._x
+
     @property
     def y(self):
-        return self._y
-    
+        with self._y_lock:
+            return self._y
+
     def set_x(self, x):
-        self._x = x
+        with self._x_lock:
+            self._x = x
 
     def set_y(self, y):
-        self._y = y
+        with self._y_lock:
+            self._y = y

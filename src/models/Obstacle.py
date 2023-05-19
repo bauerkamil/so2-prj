@@ -1,3 +1,4 @@
+from threading import Lock
 from enums.LineType import LineType
 from models.Point import Point
 

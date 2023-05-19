@@ -1,6 +1,6 @@
 import threading
 
-from enums.Players import Player
+from enums.PlayerNumbers import PlayerNumber
 
 
 class ScoreManager:
@@ -18,8 +18,8 @@ class ScoreManager:
             with self._player2_lock:
                 return self._player1_score, self._player2_score
 
-    def add_point(self, player: Player):
-        if player == Player.ONE:
+    def add_point(self, player: PlayerNumber):
+        if player == PlayerNumber.ONE:
             with self._player1_lock:
                 self._player1_score += 1
         else:

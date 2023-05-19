@@ -1,9 +1,11 @@
 import pygame
 
 from pygame.locals import *
-from managers.BallManager import BallManager
 
+from enums.PlayerNumbers import PlayerNumber
+from managers.BallManager import BallManager
 from managers.ObstacleManager import ObstacleManager
+from managers.PlayerManager import PlayerManager
 from managers.ScoreManager import ScoreManager
 from Settings import Settings
 
@@ -12,7 +14,8 @@ class Game:
     def __init__(self,
                  obstacle_manager: ObstacleManager,
                  ball_manager: BallManager,
-                 score_manager: ScoreManager):
+                 score_manager: ScoreManager,
+                 player_manager: PlayerManager):
         pygame.init()
         pygame.font.init()
         pygame.time.Clock().tick(10)
@@ -25,6 +28,7 @@ class Game:
         self._obstacle_manager = obstacle_manager
         self._ball_manager = ball_manager
         self._score_manager = score_manager
+        self._player_manager = player_manager
 
     def play(self):
         running = True
@@ -35,6 +39,19 @@ class Game:
                 if event.type == pygame.QUIT:
                     self._ball_manager.stop()
                     running = False
+                if event.type == pygame.KEYDOWN:
+                    match event.key:
+                        case pygame.K_w:
+                            self._player_manager.move_up(PlayerNumber.ONE)
+
+                        case pygame.K_s:
+                            self._player_manager.move_down(PlayerNumber.ONE)
+
+                        case pygame.K_UP:
+                            self._player_manager.move_up(PlayerNumber.TWO)
+
+                        case pygame.K_DOWN:
+                            self._player_manager.move_down(PlayerNumber.TWO)
 
             self._ball_manager.refresh_running_balls()
 
@@ -50,7 +67,7 @@ class Game:
                                    tuple([x * Settings.SCALE for x in ball_coordinates]), Settings.SCALE)
 
             [first, second] = self._score_manager.score
-            font = self._font.render(f'{first} : {second}', False, (0, 0, 0))
+            font = self._font.render(f'{second} : {first}', False, (0, 0, 0))
             self._screen.blit(
                 font, (Settings.SCALE * (Settings.MAP_WIDTH / 2.15), Settings.SCALE * (Settings.MAP_HEIGHT * 0.05)))
 

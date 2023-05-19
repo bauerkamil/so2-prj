@@ -38,6 +38,10 @@ class Ball:
     def _move(self):
         while self._is_running:
             sleep(self._time_delay)
+
+            if (not self._is_running):
+                break
+
             x, y = self._position.coordinates
 
             player = self._obstacle_manager.player_got_point(self._position.x)
