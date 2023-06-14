@@ -1,25 +1,44 @@
-from Settings import Settings
-from enums.LineType import LineType
-from managers.BallManager import BallManager
-from managers.ObstacleManager import ObstacleManager
-from managers.PlayerManager import PlayerManager
-from managers.ScoreManager import ScoreManager
-from Game import Game
-from models.Obstacle import Obstacle
-from models.Player import Player
-from models.Point import Point
+'''
+main module
+application's starting point
+'''
+from settings import Settings
+from game import Game
+from enums.line_type import LineType
+from managers.ball_manager import BallManager
+from managers.obstacle_manager import ObstacleManager
+from managers.player_manager import PlayerManager
+from managers.score_manager import ScoreManager
+from models.obstacle import Obstacle
+from models.player import Player
+from models.point import Point
 
 
 def initialize():
-    player_1 = Player(Obstacle(Point(0, 30), Point(
-        0, 30 + Settings.USER_HEIGHT), LineType.VERTICAL))
-    player_2 = Player(Obstacle(Point(Settings.MAP_WIDTH, 15), Point(
-        Settings.MAP_WIDTH, 15 + Settings.USER_HEIGHT), LineType.VERTICAL))
+    '''
+    initializes required objects
+
+    returns an object of the Game
+    '''
+    player_1 = Player(
+        Obstacle(
+            Point(0, 30),
+            Point(0, 30 + Settings.USER_HEIGHT),
+            LineType.VERTICAL))
+    player_2 = Player(
+        Obstacle(
+            Point(Settings.MAP_WIDTH, 15),
+            Point(Settings.MAP_WIDTH, 15 + Settings.USER_HEIGHT),
+            LineType.VERTICAL))
     obstacles = [
-        Obstacle(Point(0, 0), Point(
-            Settings.MAP_WIDTH, 0), LineType.HORIZONTAL),
-        Obstacle(Point(Settings.MAP_WIDTH, Settings.MAP_HEIGHT), Point(
-            0, Settings.MAP_HEIGHT), LineType.HORIZONTAL),
+        Obstacle(
+            Point(0, 0),
+            Point(Settings.MAP_WIDTH, 0),
+            LineType.HORIZONTAL),
+        Obstacle(
+            Point(Settings.MAP_WIDTH, Settings.MAP_HEIGHT),
+            Point(0, Settings.MAP_HEIGHT),
+            LineType.HORIZONTAL),
         player_1.obstacle,
         player_2.obstacle
     ]
@@ -32,6 +51,9 @@ def initialize():
 
 
 def main():
+    '''
+    application's main method
+    '''
 
     game = initialize()
 

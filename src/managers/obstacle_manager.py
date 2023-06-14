@@ -1,22 +1,25 @@
+'''
+module for ObstacleManager class
+'''
 from random import randrange, choice
 from threading import Lock, Thread
 from time import sleep
 from typing import List
-from Settings import Settings
-from enums.Direction import Direction
-from enums.LineType import LineType
-from models.Obstacle import Obstacle
-from models.Point import Point
+from settings import Settings
+from enums.direction import Direction
+from enums.line_type import LineType
+from models.obstacle import Obstacle
+from models.point import Point
 
 
 class ObstacleManager:
     '''
-    class responsible for storing obstacles and generating new
+    class responsible for storing and generating new obstacles
     '''
 
     def __init__(self, obstacles: List[Obstacle]):
         self._obstacles = obstacles
-        self._time_delay = 12
+        self._time_delay = Settings.OBSTACLE_SPAWN_TIME
         self._is_running = False
         self._thread = Thread(target=self._generate_obstacles)
         self._lock = Lock()
@@ -69,6 +72,8 @@ class ObstacleManager:
                 return Point(point.x + 1, point.y - 1)
             case Direction.DOWN_LEFT:
                 return Point(point.x - 1, point.y - 1)
+            case _:
+                raise ValueError("invalid direction")
 
     def _check_corners(self, point: Point):
         point_x, point_y = point.coordinates
@@ -95,6 +100,8 @@ class ObstacleManager:
                     return Direction.UP_LEFT
                 case Direction.DOWN_RIGHT:
                     return Direction.UP_RIGHT
+                case _:
+                    raise ValueError("invalid direction")
 
         if line_type == LineType.VERTICAL:
             match old_direction:
@@ -106,6 +113,8 @@ class ObstacleManager:
                     return Direction.DOWN_RIGHT
                 case Direction.DOWN_RIGHT:
                     return Direction.DOWN_LEFT
+                case _:
+                    raise ValueError("invalid direction")
 
         raise ValueError("Invalid arguments")
 

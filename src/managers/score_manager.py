@@ -1,9 +1,14 @@
+'''
+module for ScoreManager class
+'''
 import threading
-
-from enums.PlayerNumbers import PlayerNumber
+from enums.player_numbers import PlayerNumber
 
 
 class ScoreManager:
+    '''
+    class responsible for storing score and adding points
+    '''
 
     def __init__(self):
         self._player1_score = 0
@@ -14,11 +19,17 @@ class ScoreManager:
 
     @property
     def score(self):
+        '''
+        returns a score - tuple(player1_score, _player2_score)
+        '''
         with self._player1_lock:
             with self._player2_lock:
                 return self._player1_score, self._player2_score
 
     def add_point(self, player: PlayerNumber):
+        '''
+        adds point to given player
+        '''
         if player == PlayerNumber.ONE:
             with self._player1_lock:
                 self._player1_score += 1

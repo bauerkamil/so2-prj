@@ -25,7 +25,7 @@ pip3 install -r requirements.txt
 
 ## Run app
 ```bash
-python3 ./src/App.py
+python3 ./src/app.py
 ```
 
 ## How to play
