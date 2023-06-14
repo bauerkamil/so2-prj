@@ -3,8 +3,6 @@ module for Game class
 '''
 import pygame
 
-from pygame.locals import *
-
 from enums.player_numbers import PlayerNumber
 from managers.ball_manager import BallManager
 from managers.obstacle_manager import ObstacleManager

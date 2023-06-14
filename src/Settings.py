@@ -14,5 +14,5 @@ class Settings:
     TITLE = 'Ping Pong'
     USER_HEIGHT = 15
     OBSTACLE_HEIGHT = 5
-    OBSTACLE_SPAWN_TIME = 2
+    OBSTACLE_SPAWN_TIME = 12
     BALL_SPAWN_TIME = 4

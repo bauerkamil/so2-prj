@@ -19,7 +19,7 @@ class Point:
     @property
     def coordinates(self):
         '''
-        return coordinates - tuple(x, y)
+        returns coordinates - tuple(x, y)
         '''
         with self._x_lock:
             with self._y_lock:

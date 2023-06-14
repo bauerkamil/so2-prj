@@ -30,13 +30,17 @@ class ObstacleManager:
         returns an array of tuples containing coordinates for obstacles
         '''
         with self._lock:
-            return [tuple([x.points[0].coordinates, x.points[1].coordinates]) for x in self._obstacles]
+            return [
+                tuple(
+                    [x.points[0].coordinates, x.points[1].coordinates]
+                ) for x in self._obstacles
+            ]
 
-    def get_direction(self, point: Point, direction: Direction):
+    def get_direction(self, current_point: Point, direction: Direction):
         '''
         returns direction in which the ball should move
         '''
-        future_point = self._get_future_point(point, direction)
+        future_point = self._get_future_point(current_point, direction)
 
         new_direction = self._check_corners(future_point)
         if new_direction is not None:
