@@ -5,3 +5,5 @@ class Settings:
     SCALE = 8
     BACKGROUND_COLOR = (124, 43, 175)
     TITLE = 'Ping Pong'
+    USER_HEIGHT = 15
+    OBSTACLE_HEIGHT = 5

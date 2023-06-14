@@ -1,5 +1,7 @@
 from threading import Thread
 from time import sleep
+from Settings import Settings
+from enums.PlayerNumbers import PlayerNumber
 from managers.ObstacleManager import ObstacleManager
 from enums.Direction import Direction
 from models.Point import Point
@@ -44,8 +46,8 @@ class Ball:
 
             x, y = self._position.coordinates
 
-            player = self._obstacle_manager.player_got_point(self._position.x)
-            if player != None:
+            player = self._player_got_point(self._position.x)
+            if player is not None:
                 self._score.add_point(player)
                 self.stop()
                 return
@@ -66,3 +68,12 @@ class Ball:
                 case Direction.DOWN_LEFT:
                     self._position.set_x(x - 1)
                     self._position.set_y(y - 1)
+
+    def _player_got_point(self, x_position):
+        if x_position == 0:
+            return PlayerNumber.ONE
+
+        if x_position == Settings.MAP_WIDTH:
+            return PlayerNumber.TWO
+
+        return None

@@ -12,9 +12,9 @@ from models.Point import Point
 
 def initialize():
     player_1 = Player(Obstacle(Point(0, 30), Point(
-        0, 45), LineType.VERTICAL))
+        0, 30 + Settings.USER_HEIGHT), LineType.VERTICAL))
     player_2 = Player(Obstacle(Point(Settings.MAP_WIDTH, 15), Point(
-        Settings.MAP_WIDTH, 30), LineType.VERTICAL))
+        Settings.MAP_WIDTH, 15 + Settings.USER_HEIGHT), LineType.VERTICAL))
     obstacles = [
         Obstacle(Point(0, 0), Point(
             Settings.MAP_WIDTH, 0), LineType.HORIZONTAL),

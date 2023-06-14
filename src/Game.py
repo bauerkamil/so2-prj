@@ -33,11 +33,13 @@ class Game:
     def play(self):
         running = True
         self._ball_manager.run()
+        self._obstacle_manager.run()
 
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self._ball_manager.stop()
+                    self._obstacle_manager.stop()
                     running = False
                 if event.type == pygame.KEYDOWN:
                     match event.key:
