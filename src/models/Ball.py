@@ -57,7 +57,12 @@ class Ball:
 
     def _move(self):
         while self._is_running:
-            sleep(self._time_delay)
+            time = 0
+            while time < self._time_delay:
+                sleep(0.1)
+                time += 0.1
+                if not self._is_running:
+                    break
 
             if not self._is_running:
                 break

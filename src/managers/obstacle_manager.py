@@ -121,7 +121,12 @@ class ObstacleManager:
     def _generate_obstacles(self):
 
         while self._is_running:
-            sleep(self._time_delay)
+            time = 0
+            while time < self._time_delay:
+                sleep(0.1)
+                time += 0.1
+                if not self._is_running:
+                    break
 
             point_x = randrange(1, Settings.MAP_WIDTH - 1)
             point_y = randrange(1, Settings.MAP_HEIGHT - 1)
